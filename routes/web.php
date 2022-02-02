@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,4 +16,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/profile/{lang}', function ($lang) {
+    
+    if (! in_array($lang, ['en', 'hi', 'ko'])) {
+        abort(400);
+    }
+    App::setlocale($lang);
+    return view('profile');
 });
