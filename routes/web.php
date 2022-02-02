@@ -19,6 +19,10 @@ Route::get('/', function () {
 });
 
 Route::get('/profile/{lang}', function ($lang) {
+    
+    if (! in_array($lang, ['en', 'hi', 'ko'])) {
+        abort(400);
+    }
     App::setlocale($lang);
     return view('profile');
 });
